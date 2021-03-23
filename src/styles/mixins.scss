@@ -1,0 +1,89 @@
+@import './colors';
+
+@mixin disabled {
+  pointer-events: none;
+
+  @include vendor-prefix(user-select, none);
+}
+
+@mixin formTextInput {
+  height: 42px;
+  border: 1px solid $formTextInputBorderColor;
+  border-radius: 3px;
+}
+
+@mixin formButton {
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 26px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+
+  &--danger {
+    background-color: $danger;
+    color: $_standardWhite;
+  }
+
+  &--save {
+    color: $_standardWhite;
+    background-color: $saveButtonColor;
+  }
+
+  &--warning {
+    color: $_black;
+    background-color: $_golden;
+  }
+
+
+}
+
+@mixin ellipsisText {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px;
+  text-overflow: ellipsis;
+}
+
+@mixin ellipsisTextWithoutPadding {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin elipsisTextInRows($rows) {
+  display: -webkit-box;
+
+  @include vendor-prefix(line-clamp, $rows);
+  @include vendor-prefix(box-orient, vertical);
+  overflow: hidden;
+}
+
+@mixin ruleManagerDivider($bgColor) {
+  width: 60px;
+  margin: 0 auto;
+  position: relative;
+  top: 9px;
+  background-color: $bgColor;
+  text-align: center;
+  color: $borderColor;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+@mixin vendor-prefix($name, $value) {
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$name}: #{$value};
+  }
+}

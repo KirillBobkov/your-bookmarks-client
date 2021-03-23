@@ -1,0 +1,90 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "classnames": "^2.2.6",
+    "connected-react-router": "^6.8.0",
+    "history": "^4.9.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.29.1",
+    "node-sass": "^4.12.0",
+    "normalize.css": "^8.0.1",
+    "query-string": "^6.5.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-file-base64": "^1.0.3",
+    "react-icons": "^4.2.0",
+    "react-modal": "^3.12.1",
+    "react-redux": "^7.2.2",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "4.0.1",
+    "recompose": "^0.30.0",
+    "redux": "^4.0.5",
+    "redux-form": "^8.2.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "ts-loader": "^8.0.15",
+    "typescript": "^4.1.3",
+    "web-vitals": "^0.2.4"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/history": "^4.7.2",
+    "@types/jest": "24.0.13",
+    "@types/lodash": "^4.14.129",
+    "@types/moment": "^2.13.0",
+    "@types/node": "12.0.1",
+    "@types/query-string": "^6.3.0",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "16.0.9",
+    "@types/react-modal": "^3.8.2",
+    "@types/react-redux": "^7.0.9",
+    "@types/react-router-dom": "^4.3.3",
+    "@types/recompose": "^0.30.6",
+    "@types/redux": "^3.6.0",
+    "@types/redux-form": "^8.1.1",
+    "@types/webpack-env": "^1.13.9",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "eslint-config-airbnb-typescript": "^4.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "stylelint": "9.10.1",
+    "stylelint-config-recommended-scss": "3.2.0",
+    "stylelint-scss": "3.5.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

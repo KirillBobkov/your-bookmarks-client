@@ -1,0 +1,28 @@
+@import '../../styles/colors.scss';
+
+.button {
+    min-width: 30px;
+    outline: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Source Sans Pro SemiBold';
+    font-weight: 400;
+    cursor: pointer;
+    border: 2px solid $_lightBlue;
+    border-radius: 5px;
+    background-color: $_standardWhite;
+    color: $_lightBlue;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    
+    &--warning {
+        border: 2px solid $_paleOrange;
+        color: $_paleOrange;
+    }
+
+    &--danger {
+        border: 2px solid $_red;
+        color: $_red;
+    }
+}

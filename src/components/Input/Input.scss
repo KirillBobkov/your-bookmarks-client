@@ -1,0 +1,33 @@
+.input {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid rgba(106, 110, 128, 0.315);
+
+    &:focus {
+        border: 1px solid rgba(47, 49, 59, 0.315);
+        outline: transparent;
+    }
+
+    &--red {
+        border: 1px solid red;
+
+        &:focus {
+          border: 1px solid red;
+        }
+    }
+        
+    &__label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    &__error {
+        color: red;
+        font-size: 12px;
+    }
+}
