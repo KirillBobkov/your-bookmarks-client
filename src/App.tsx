@@ -12,6 +12,6 @@ const App = (): JSX.Element => (
     <Footer />
     <Form />
   </>
-  );
+);
 
 export default App;

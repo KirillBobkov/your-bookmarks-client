@@ -16,7 +16,7 @@ const Header = (): JSX.Element => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect((): void => {
-      dispatch(setSearchValue(debouncedSearchTerm));
+    dispatch(setSearchValue(debouncedSearchTerm));
   }, [debouncedSearchTerm]);
 
   return (
@@ -29,7 +29,7 @@ const Header = (): JSX.Element => {
         isDisabled={!isCardsAvailable}
       />
     </header>
-);
+  );
 };
 
 export default Header;

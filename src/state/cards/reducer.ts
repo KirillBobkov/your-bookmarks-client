@@ -36,7 +36,7 @@ const actionHandlers = {
     return {
       ...newState,
       data: newState.data
-          .map((card: ICard): ICard => (card._id === updatedCard._id ? updatedCard : card)),
+        .map((card: ICard): ICard => (card._id === updatedCard._id ? updatedCard : card)),
     };
   },
 

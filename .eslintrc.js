@@ -43,6 +43,7 @@ module.exports = {
     'jsx-a11y/interactive-supports-focus': 'off',
     'no-restricted-globals': 'off',
     'react/no-did-update-set-state': 'off',
+    'indent': ['error', 2],
     semi: 0,
     typedef: [0, 'call-signature'],
 

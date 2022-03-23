@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import './Input.scss';
 
 const Input = ({
- name, onChange, value, classes, errorMessage, label, isDisabled,
+  name, onChange, value, classes, errorMessage, label, isDisabled,
 }: Props): JSX.Element => {
   const handleOnchange = (e: any): void => {
     onChange(e.target.value);
@@ -21,10 +21,10 @@ const Input = ({
         onChange={(e): void => handleOnchange(e)}
         disabled={isDisabled}
         className={classnames({
-        input: true,
-        [`${classes}`]: !!classes,
-        'input--red': !!errorMessage,
-      })}
+          input: true,
+          [`${classes}`]: !!classes,
+          'input--red': !!errorMessage,
+        })}
       />
       {errorMessage && <p className="input__error">{errorMessage}</p>}
     </label>

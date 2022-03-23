@@ -31,22 +31,22 @@ const Cards = (): JSX.Element => {
       <ul className="cards__container">
         {filteredCards && !!filteredCards.length
           && (
-          <>
-            {filteredCards.map((card: ICard): JSX.Element => (
-              <Card 
-                key={card._id} 
-                card={card}
-              />
-            ))}
-          </>
-        )
-      }
+            <>
+              {filteredCards.map((card: ICard): JSX.Element => (
+                <Card 
+                  key={card._id} 
+                  card={card}
+                />
+              ))}
+            </>
+          )
+        }
         {!!cards.length && !filteredCards.length && <div>Sorry, no cards have found</div>}
         {!searchValue && (
-        <li className="cards__add-button" onClick={(): void => { dispatch(setEditModeAction(true)); }}>
-          <BsPlus color="white" size="50" />
-        </li>
-      )}
+          <li className="cards__add-button" onClick={(): void => { dispatch(setEditModeAction(true)); }}>
+            <BsPlus color="white" size="50" />
+          </li>
+        )}
       </ul> 
     </div>
   );

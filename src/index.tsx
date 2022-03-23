@@ -20,12 +20,12 @@ const render = (): void => {
 
 
 const enableHMR = (): void => {
-if (module.hot) {
+  if (module.hot) {
   // @ts-ignore
-  module.hot.accept(undefined, (): void => {
-    render();
-  });
-}
+    module.hot.accept(undefined, (): void => {
+      render();
+    });
+  }
 };
 
 render();

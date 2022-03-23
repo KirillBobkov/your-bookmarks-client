@@ -1,5 +1,5 @@
 import React, {
- useState, useRef, MouseEvent, RefObject, 
+  useState, useRef, MouseEvent, RefObject, 
 } from 'react';
 import { useDispatch } from 'react-redux';
 import { MdSettings, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
@@ -42,7 +42,7 @@ const Card = ({ card }: Props): JSX.Element => {
   const handleLinkClick = (e: MouseEvent): void => {
     e.preventDefault();
     if (linkRef && linkRef.current) {
-     linkRef.current.click(); 
+      linkRef.current.click(); 
     }
   };
 
@@ -64,26 +64,26 @@ const Card = ({ card }: Props): JSX.Element => {
         />
         {editOptionsEnabled 
           && (
-          <div 
-            className="card__edit-options" 
-            onMouseLeave={(e): void => handleSetEditOptions(e)}
-          >
-            <div
-              className="card__edit-button"
-              onClick={(e: MouseEvent): void => handleSetEditMode(e)}
+            <div 
+              className="card__edit-options" 
+              onMouseLeave={(e): void => handleSetEditOptions(e)}
             >
-              <AiFillEdit />
-              <span className="card__edit-text">Edit</span>
+              <div
+                className="card__edit-button"
+                onClick={(e: MouseEvent): void => handleSetEditMode(e)}
+              >
+                <AiFillEdit />
+                <span className="card__edit-text">Edit</span>
+              </div>
+              <div
+                className="card__edit-button"
+                onClick={(e: MouseEvent): void => handleDeleteCard(e)}
+              >
+                <AiFillDelete size="16" />
+                <span className="card__edit-text">Delete</span>
+              </div>
             </div>
-            <div
-              className="card__edit-button"
-              onClick={(e: MouseEvent): void => handleDeleteCard(e)}
-            >
-              <AiFillDelete size="16" />
-              <span className="card__edit-text">Delete</span>
-            </div>
-          </div>
-        )}
+          )}
         {card.isFavorite 
           ? (
             <MdFavorite
@@ -91,7 +91,7 @@ const Card = ({ card }: Props): JSX.Element => {
               className={`card__favorite ${card.isFavorite ? 'card__favorite--red' : ''}`}
               onClick={(e: MouseEvent): void => handleAddToFavorite(e)}
             />
-            )
+          )
           : (
             <MdFavoriteBorder 
               size="20"

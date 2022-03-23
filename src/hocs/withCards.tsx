@@ -6,25 +6,25 @@ import { getCards } from '../state/cards/actions';
 import Spinner from '../components/Spinner';
 
 const withCards = (WrappedComponent: ComponentType<any>): ComponentType<any> => {
-    const withCardsComponent = (): JSX.Element => {
-        const dispatch = useDispatch();
-        const isFetching = useSelector(isFetchingCardsSelector);
+  const withCardsComponent = (): JSX.Element => {
+    const dispatch = useDispatch();
+    const isFetching = useSelector(isFetchingCardsSelector);
       
-        useEffect((): void => {
-          dispatch(getCards());
-        }, []);
+    useEffect((): void => {
+      dispatch(getCards());
+    }, []);
       
-        return (
-          <>
-            {isFetching && <Spinner />}
-            {!isFetching && <WrappedComponent />}
-          </>
-        );
-    };
+    return (
+      <>
+        {isFetching && <Spinner />}
+        {!isFetching && <WrappedComponent />}
+      </>
+    );
+  };
 
-    withCardsComponent.displayName = `withCardsComponent(${WrappedComponent.name})`;
+  withCardsComponent.displayName = `withCardsComponent(${WrappedComponent.name})`;
 
-    return withCardsComponent;
+  return withCardsComponent;
 };
 
 export default withCards;

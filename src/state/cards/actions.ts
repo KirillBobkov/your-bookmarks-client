@@ -43,32 +43,32 @@ export const setCardsFetching = (isFetching: boolean): AnyAction => ({
 
 
 export const getCards = (): Function => async (dispatch: Dispatch): Promise<any> => {
-    dispatch(setCardsFetching(true));
-    const { data } = await api.fetchCards();
-    dispatch(setCardsAction(data));
-    dispatch(setCardsFetching(false)); 
+  dispatch(setCardsFetching(true));
+  const { data } = await api.fetchCards();
+  dispatch(setCardsAction(data));
+  dispatch(setCardsFetching(false)); 
 };
 
 export const createCard = (card: IPartialCard): Function => async (
   dispatch: Dispatch,
 ): Promise<any> => {
-    const { data } = await api.createCard(card);
-    dispatch(createCardAction(data));
+  const { data } = await api.createCard(card);
+  dispatch(createCardAction(data));
 };
 
 export const updateCard = (id: string, card: IPartialCard): Function => async (
   dispatch: Dispatch,
 ): Promise<any> => {
-    const { data } = await api.updateCard(id, card);
-    dispatch(updateCardAction(data));
+  const { data } = await api.updateCard(id, card);
+  dispatch(updateCardAction(data));
 };
 
 export const addToFavorite = (id: string): Function => async (dispatch: Dispatch): Promise<any> => {
-    const { data } = await api.addToFavorite(id);
-    dispatch(addToFavoriteAction(data));
+  const { data } = await api.addToFavorite(id);
+  dispatch(addToFavoriteAction(data));
 };
 
 export const deleteCard = (id: string): Function => async (dispatch: Dispatch): Promise<any> => {
-    await api.deleteCard(id);
-    dispatch(deleteCardAction(id));
+  await api.deleteCard(id);
+  dispatch(deleteCardAction(id));
 };
