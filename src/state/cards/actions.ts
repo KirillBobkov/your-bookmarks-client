@@ -9,6 +9,8 @@ export const ADD_TO_FAVORITE = 'LIKE';
 export const DELETE = 'DELETE';
 export const SET_FETCHING = 'SET_FETCHING';
 
+type IPartialCard = Omit<ICard, '_id' | 'isFavorite'>; 
+
 export const setCardsAction = (cards: ICard[]): AnyAction => ({
   type: SET_CARDS,
   payload: cards,
@@ -40,53 +42,33 @@ export const setCardsFetching = (isFetching: boolean): AnyAction => ({
 });
 
 
-export const getCards = (): any => async (dispatch: Dispatch): Promise<any> => {
-  try {
+export const getCards = (): Function => async (dispatch: Dispatch): Promise<any> => {
     dispatch(setCardsFetching(true));
     const { data } = await api.fetchCards();
     dispatch(setCardsAction(data));
-    dispatch(setCardsFetching(false));
-  } catch (error) {
-    console.log(error.message);
-  }
+    dispatch(setCardsFetching(false)); 
 };
 
-export const createCard = (card: Partial<ICard>): any => async (
+export const createCard = (card: IPartialCard): Function => async (
   dispatch: Dispatch,
 ): Promise<any> => {
-  try {
     const { data } = await api.createCard(card);
     dispatch(createCardAction(data));
-  } catch (error) {
-    console.log(error.message);
-  }
 };
 
-export const updateCard = (id: string, card: Partial<ICard>): any => async (
+export const updateCard = (id: string, card: IPartialCard): Function => async (
   dispatch: Dispatch,
 ): Promise<any> => {
-  try {
     const { data } = await api.updateCard(id, card);
     dispatch(updateCardAction(data));
-  } catch (error) {
-    console.log(error.message);
-  }
 };
 
-export const addToFavorite = (id: string): any => async (dispatch: Dispatch): Promise<any> => {
-  try {
+export const addToFavorite = (id: string): Function => async (dispatch: Dispatch): Promise<any> => {
     const { data } = await api.addToFavorite(id);
     dispatch(addToFavoriteAction(data));
-  } catch (error) {
-    console.log(error.message);
-  }
 };
 
-export const deleteCard = (id: string): any => async (dispatch: Dispatch): Promise<any> => {
-  try {
+export const deleteCard = (id: string): Function => async (dispatch: Dispatch): Promise<any> => {
     await api.deleteCard(id);
     dispatch(deleteCardAction(id));
-  } catch (error) {
-    console.log(error.message);
-  }
 };

@@ -1,9 +1,7 @@
+import { Store } from 'redux';
 import configureStore from '../state/store';
 import history from './history';
 
-const store = configureStore(history, {});
-
-// @ts-ignore
-store.asyncReducers = {};
+const store: Store = configureStore(history, {});
 
 export default store;

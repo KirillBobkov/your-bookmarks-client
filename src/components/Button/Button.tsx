@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
 import './Button.scss';
 
-const Button = ({ capture, mode, onClick }: Props): JSX.Element => (
+const Button = ({
+  text, mode, onClick, ...attrs 
+}: Props): JSX.Element => (
   <button
     onClick={onClick}
     type="button" 
@@ -11,8 +13,9 @@ const Button = ({ capture, mode, onClick }: Props): JSX.Element => (
       button: true,
       [`button--${mode}`]: !!mode,
     })}
+    {...attrs}
   >
-    {capture}
+    { text}
   </button>
 );
 
@@ -20,8 +23,8 @@ Button.defaultProps = {
   mode: '',
 };
 
-interface Props {
-  capture: string;
+interface Props extends HTMLAttributes<HTMLButtonElement> {
+   text: string;
   mode?: string;
   onClick: (e: any) => void;
 }

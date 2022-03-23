@@ -18,16 +18,18 @@ import { getCurrentIdCardSelector } from '../../state/cards/selectors';
 
 Modal.setAppElement('#root');
 
+type IPartialCard = Omit<ICard, '_id' | 'isFavorite'>; 
+
 const Form = (): JSX.Element => {
   const dispatch = useDispatch();
   const isEditMode = useSelector(getIsActiveEditModeSelector);
   const currentId = useSelector(getCurrentIdSelector);
   const currentCard = useSelector(getCurrentIdCardSelector);
 
-  const initialErrorsState = { title: '', link: '' };
-  const initialCardState = { title: '', link: '' };
+  const initialErrorsState: IPartialCard = { title: '', link: '' };
+  const initialCardState: IPartialCard = { title: '', link: '' };
   const [errors, setValidationErrors] = useState(initialErrorsState);
-  const [cardData, setCardData] = useState(initialCardState);
+  const [cardData, setCardData] = useState<IPartialCard>(initialCardState);
 
   useEffect((): void => { 
     if (currentCard) setCardData(currentCard); 
@@ -49,7 +51,7 @@ const Form = (): JSX.Element => {
 
     dispatch(currentId 
       ? updateCard(currentId, cardData) 
-      : createCard(cardData as Partial<ICard>));
+      : createCard(cardData));
     dispatch(setEditModeAction(false));
     dispatch(setCurrentId(''));
     handleClearFields();
@@ -115,8 +117,8 @@ const Form = (): JSX.Element => {
             onChange={handleOnChangeLink}
           />
           <div className="edit-window__actions">
-            <Button capture="Submit" onClick={(e): void => handleSubmit(e)} />
-            <Button capture="Clear" mode="danger" onClick={handleClearFields} />
+            <Button text="Submit" onClick={(e): void => handleSubmit(e)} />
+            <Button text="Clear" mode="danger" onClick={handleClearFields} />
           </div>
         </form>
       </div>

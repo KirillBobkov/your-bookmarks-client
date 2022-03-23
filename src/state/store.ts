@@ -1,5 +1,6 @@
 import {
-    createStore, applyMiddleware, combineReducers, compose, Store, Reducer,
+    createStore, applyMiddleware, combineReducers, compose,
+    Store, Reducer, CombinedState, StateFromReducersMapObject,
   } from 'redux';
   import thunk from 'redux-thunk';
   import { reducer as form } from 'redux-form';
@@ -8,10 +9,11 @@ import {
   
   const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   
-  export function createReducer(history: History): Reducer {
+  export function createReducer(
+    history: History,
+  ): Reducer<CombinedState<StateFromReducersMapObject<any>>, never> {
     const reducers = require('./reducers').default;
-  
-    // @ts-ignore
+    
     return combineReducers({
       ...reducers,
       form,
@@ -30,7 +32,6 @@ import {
       composeEnhancers(applyMiddleware(...middlewares)),
     );
   
-    // Replace store in HMR
     if (module.hot) {
       module.hot.accept('./reducers', (): void => {
         store.replaceReducer(createReducer(history));

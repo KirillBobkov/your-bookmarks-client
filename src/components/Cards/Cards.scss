@@ -7,16 +7,13 @@
     &__container {
         display: flex;
         flex: 1 0;
+        gap: 20px;
         width: 100%;
-        max-width: 1200px;
+        max-width: 1240px;
         margin: 0 auto;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
-    }
-
-    &__item {
-        margin: 10px;
     }
 
     &__add-button {
@@ -24,7 +21,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 250px;
+        width: 300px;
         height: 150px;
         border-radius: 6px;
         padding: 10px;

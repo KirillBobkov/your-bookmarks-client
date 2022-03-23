@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchValue } from '../../state/search/actions';
 import { isCardsEmptySelector } from '../../state/cards/selectors';

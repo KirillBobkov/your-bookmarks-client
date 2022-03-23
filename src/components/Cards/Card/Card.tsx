@@ -1,5 +1,5 @@
 import React, {
- useState, useRef, MouseEvent, 
+ useState, useRef, MouseEvent, RefObject, 
 } from 'react';
 import { useDispatch } from 'react-redux';
 import { MdSettings, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
@@ -8,7 +8,6 @@ import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import { deleteCard, addToFavorite } from '../../../state/cards/actions';
 import { setEditModeAction, setCurrentId } from '../../../state/editMode/actions';
 import ICard from '../../../interfaces/ICard';
-
 
 import './Card.scss';
 
@@ -50,8 +49,7 @@ const Card = ({ card }: Props): JSX.Element => {
   return (
     <li>
       <a
-    // @ts-ignore
-        ref={linkRef}
+        ref={linkRef as RefObject<HTMLAnchorElement>}
         href={linkHref}
         rel="noreferrer"
         target="_blank"
@@ -59,7 +57,7 @@ const Card = ({ card }: Props): JSX.Element => {
       >
         {' '}
       </a>
-      <div className="cards__item card" onClick={handleLinkClick}>
+      <div className="card" onClick={handleLinkClick}>
         <MdSettings 
           className="card__edit-toogle" 
           onClick={(e: MouseEvent): void => handleSetEditOptions(e)}
@@ -75,14 +73,14 @@ const Card = ({ card }: Props): JSX.Element => {
               onClick={(e: MouseEvent): void => handleSetEditMode(e)}
             >
               <AiFillEdit />
-              <span className="card__edit-capture">Edit</span>
+              <span className="card__edit-text">Edit</span>
             </div>
             <div
               className="card__edit-button"
               onClick={(e: MouseEvent): void => handleDeleteCard(e)}
             >
               <AiFillDelete size="16" />
-              <span className="card__edit-capture">Delete</span>
+              <span className="card__edit-text">Delete</span>
             </div>
           </div>
         )}
