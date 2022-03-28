@@ -1,6 +1,6 @@
 import { AnyAction, Dispatch } from 'redux';
 import * as api from '../../api';
-import ICard from '../../interfaces/ICard';
+import { ICard, IPartialCard } from '../../interfaces/ICard';
 
 export const SET_CARDS = 'SET_CARDS';
 export const CREATE = 'CREATE';
@@ -8,8 +8,6 @@ export const UPDATE = 'UPDATE';
 export const ADD_TO_FAVORITE = 'LIKE';
 export const DELETE = 'DELETE';
 export const SET_FETCHING = 'SET_FETCHING';
-
-type IPartialCard = Omit<ICard, '_id' | 'isFavorite'>; 
 
 export const setCardsAction = (cards: ICard[]): AnyAction => ({
   type: SET_CARDS,
@@ -40,7 +38,6 @@ export const setCardsFetching = (isFetching: boolean): AnyAction => ({
   type: SET_FETCHING,
   payload: isFetching,
 });
-
 
 export const getCards = (): Function => async (dispatch: Dispatch): Promise<any> => {
   dispatch(setCardsFetching(true));

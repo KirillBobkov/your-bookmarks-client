@@ -4,7 +4,7 @@ import './Footer.scss';
 
 const Footer = (): JSX.Element => (
   <footer className="footer">
-    <span className="footer__title">&#169; 2021 Kirill Bobkov</span>
+    <span className="footer__title">Kirill Bobkov, &#169; 2021</span>
   </footer>
 );
 

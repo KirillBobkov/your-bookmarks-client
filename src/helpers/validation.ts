@@ -1,4 +1,11 @@
-const validateField = (data: any): any => {
+import { IPartialCard } from '../interfaces/ICard';
+
+interface Errors {
+  title: string;
+  link: string;
+}
+
+const validateField = (data: IPartialCard): Errors => {
   const errors: Errors = {
     title: '',
     link: '',
@@ -15,9 +22,5 @@ const validateField = (data: any): any => {
   return errors;
 };
 
-interface Errors {
-  title: string;
-  link: string;
-}
     
 export default validateField;

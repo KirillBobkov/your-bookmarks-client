@@ -1,11 +1,20 @@
-
 import React from 'react';
 import classnames from 'classnames';
 
 import './Input.scss';
 
+interface Props {
+  name: string;
+  onChange: (e: any) => void;
+  value: string;
+  classes?: string;
+  errorMessage?: string;
+  label?: string;
+  isDisabled?: boolean;
+}
+
 const Input = ({
-  name, onChange, value, classes, errorMessage, label, isDisabled,
+  name, onChange, value, classes = '', errorMessage = '', label = '', isDisabled = false,
 }: Props): JSX.Element => {
   const handleOnchange = (e: any): void => {
     onChange(e.target.value);
@@ -13,7 +22,7 @@ const Input = ({
 
   return (
     <label className="input__label" htmlFor={name}>
-      {label}
+      <span>{label}</span>
       <input
         name={name}
         placeholder={name}
@@ -30,22 +39,5 @@ const Input = ({
     </label>
   );
 };
-
-Input.defaultProps = {
-  classes: '',
-  errorMessage: '',
-  label: '',
-  isDisabled: false,
-};
-
-interface Props {
-    name: string;
-    onChange: (e: any) => void;
-    value: string;
-    classes?: string;
-    errorMessage?: string;
-    label?: string;
-    isDisabled?: boolean;
-  }
 
 export default Input;

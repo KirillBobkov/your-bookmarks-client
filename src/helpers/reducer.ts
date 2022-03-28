@@ -1,9 +1,11 @@
-export default (
-  initialState = {}, actionHandlers: any = {},
-): any => (
-  state: object = initialState, action: any,
-): object => {
-  const reduceFn = actionHandlers[action.type];
+import { AnyAction } from 'redux';
 
-  return !reduceFn ? state : reduceFn(state, action.payload);
-};
+export type ActionHandlerType<S> = Record<string, (state: S, payload: any) => S>;
+
+export const createReducer = <T>(
+  initialState: T | {} = {}, actionHandlers: ActionHandlerType<T> = {},
+): Function => (state: T | {} = initialState, action: AnyAction): T | {} => {
+    const reduceFn = actionHandlers[action.type];
+
+    return !reduceFn ? state : reduceFn(state as T, action.payload);
+  };

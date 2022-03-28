@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { setSearchValue } from '../../state/search/actions';
 import { isCardsEmptySelector } from '../../state/cards/selectors';
 import { getSearchValueSelector } from '../../state/search/selectors';
+
 import useDebounce from '../../hooks/useDebounce';
+
 import Input from '../Input';
 
 import './Header.scss';

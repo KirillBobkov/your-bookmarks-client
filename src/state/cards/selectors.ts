@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
-import ICard from '../../interfaces/ICard';
+
+import { ICard } from '../../interfaces/ICard';
+
 import { getCurrentIdSelector } from '../editMode/selectors';
 
 export const getCardsSelector = (state: object): ICard[] => _
@@ -13,10 +15,7 @@ export const isFetchingCardsSelector = (state: object): boolean => !!_
 export const getCurrentIdCardSelector = createSelector(
   getCardsSelector,
   getCurrentIdSelector,
-  (cards: ICard[], currentId: string): ICard | undefined => {
-    if (currentId) {
-      return _.find(cards, (card): boolean => (card._id === currentId));
-    } 
-    return undefined;
-  },
+  (cards: ICard[], currentId: string): ICard | undefined => (currentId 
+    ? _.find(cards, (card): boolean => card._id === currentId) 
+    : undefined),
 );

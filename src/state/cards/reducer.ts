@@ -1,4 +1,4 @@
-import createReducer from '../../helpers/reducer';
+import { createReducer } from '../../helpers/reducer';
 import {
   SET_CARDS,
   SET_FETCHING,
@@ -7,14 +7,19 @@ import {
   ADD_TO_FAVORITE,
   DELETE,
 } from './actions';
-import ICard from '../../interfaces/ICard';
+import { ICard } from '../../interfaces/ICard';
+
+interface Reducer {
+  data: ICard[];
+  isFetching: boolean;
+}
 
 const initialState: Reducer = {
   data: [],
   isFetching: true,
 };
 
-const actionHandlers = {
+const actionHandlers: ActionHandlerType<Reducer> = {
   [SET_CARDS]: (state: Reducer, cards: ICard[]): Reducer => ({
     ...state,
     data: cards, 
@@ -60,9 +65,6 @@ const actionHandlers = {
   },
 };
 
-interface Reducer {
-  data: ICard[];
-  isFetching: boolean;
-}
+type ActionHandlerType<S> = Record<string, (state: S, payload: any) => S>;
 
 export default createReducer(initialState, actionHandlers);

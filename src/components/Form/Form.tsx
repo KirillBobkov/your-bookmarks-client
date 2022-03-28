@@ -4,21 +4,21 @@ import Modal from 'react-modal';
 import { GrClose } from 'react-icons/gr';
 import _ from 'lodash';
 
-import editFormStyles from './settingsEditForm';
 import { setEditModeAction, setCurrentId } from '../../state/editMode/actions';
 import { createCard, updateCard } from '../../state/cards/actions';
-import Button from '../Button';
-import Input from '../Input';
-import validateField from '../../helpers/validation';
-
-import './Form.scss';
-import ICard from '../../interfaces/ICard';
 import { getIsActiveEditModeSelector, getCurrentIdSelector } from '../../state/editMode/selectors';
 import { getCurrentIdCardSelector } from '../../state/cards/selectors';
 
-Modal.setAppElement('#root');
+import Button from '../Button';
+import Input from '../Input';
 
-type IPartialCard = Omit<ICard, '_id' | 'isFavorite'>; 
+import editFormStyles from './settingsEditForm';
+import { IPartialCard } from '../../interfaces/ICard';
+import validateField from '../../helpers/validation';
+
+import './Form.scss';
+
+Modal.setAppElement('#root');
 
 const Form = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -80,18 +80,10 @@ const Form = (): JSX.Element => {
   };
 
   return (
-    <Modal
-      isOpen={isEditMode}
-      style={editFormStyles as Modal.Styles}
-    >
+    <Modal isOpen={isEditMode} style={editFormStyles as Modal.Styles}>
       <div className="edit-window">
-        <GrClose
-          className="edit-window__button"
-          onClick={handleCloseForm}
-        />
-        <h2 className="edit-window__title">
-          {currentId ? 'Edit bookmark' : 'Create a bookmark'}
-        </h2>
+        <GrClose className="edit-window__button" onClick={handleCloseForm} />
+        <h2 className="edit-window__title">{currentId ? 'Edit bookmark' : 'Create a bookmark'}</h2>
         <p className="edit-window__description">
           {currentId 
             ? 'Change text area that you need and submit changes'
@@ -117,7 +109,7 @@ const Form = (): JSX.Element => {
             onChange={handleOnChangeLink}
           />
           <div className="edit-window__actions">
-            <Button text="Submit" onClick={(e): void => handleSubmit(e)} />
+            <Button text="Submit" mode="warning" onClick={(e): void => handleSubmit(e)} />
             <Button text="Clear" mode="danger" onClick={handleClearFields} />
           </div>
         </form>

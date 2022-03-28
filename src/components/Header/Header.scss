@@ -2,27 +2,26 @@
 @import '../../styles/mixins';
 
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 100%;
+  max-width: 960px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 10px;
+
+  &__input {
     width: 100%;
-    max-width: 960px;
-    margin: 20px;
-    height: 100px;
-    margin: 0 auto;
+    height: 50px;
     padding: 10px;
+    border: 2px solid $_golden;
+    border-radius: 6px;
+    outline: transparent;
 
-    &__input {
-        width: 100%;
-        height: 50px;
-        padding: 10px;
-        border: 2px solid $_golden;
-        border-radius: 6px;
-        outline: transparent;
-
-        &:focus {
-            border: 2px solid $_golden;
-        }
+    &:focus {
+      border: 2px solid $_golden;
     }
+  }
 }

@@ -3,30 +3,27 @@ import classnames from 'classnames';
 
 import './Button.scss';
 
+interface Props extends HTMLAttributes<HTMLButtonElement> {
+  text: string;
+  mode?: string;
+  type?: 'button' | 'submit' | 'reset';
+  onClick: (e: any) => void;
+}
+
 const Button = ({
-  text, mode, onClick, ...attrs 
+  text, mode = '', onClick, type, ...attrs 
 }: Props): JSX.Element => (
   <button
     onClick={onClick}
-    type="button" 
     className={classnames({
       button: true,
       [`button--${mode}`]: !!mode,
     })}
+    type={type ?? 'button'}
     {...attrs}
   >
-    { text}
+    {text}
   </button>
 );
-
-Button.defaultProps = {
-  mode: '',
-};
-
-interface Props extends HTMLAttributes<HTMLButtonElement> {
-   text: string;
-  mode?: string;
-  onClick: (e: any) => void;
-}
 
 export default Button;

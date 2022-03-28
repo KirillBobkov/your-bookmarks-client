@@ -13,7 +13,7 @@ export default {
     WebkitOverflowScrolling: 'touch',
     borderRadius: '4px',
     outline: 'transparent',
-    padding: '20px',
+    padding: '30px',
     top: '40%',
     left: '50%',
     right: 'auto',

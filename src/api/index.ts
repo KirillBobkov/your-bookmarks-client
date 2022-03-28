@@ -1,9 +1,8 @@
 import axios from 'axios';
-import ICard from '../interfaces/ICard';
+
+import { ICard, IPartialCard } from '../interfaces/ICard';
 
 const url = 'https://your-bookmarks.herokuapp.com/cards';
-
-type IPartialCard = Omit<ICard, '_id' | 'isFavorite'>; 
 
 export const fetchCards = (): Promise<{ data: ICard[] }> => axios.get(url);
 export const createCard = (card: IPartialCard): Promise<any> => axios.post(url, card);

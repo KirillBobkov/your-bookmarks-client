@@ -1,102 +1,100 @@
 @import '../../../styles/colors';
+@import '../../../styles/mixins';
 
-@mixin elipsisTextInRows($rows) {
-    display: -webkit-box;
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 150px;
+  border-radius: 6px;
+  background-color: $_standardWhite;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 0 3px 0 rgba(44, 47, 60, 0.09), 0 3px 10px 0 rgba(44, 47, 60, 0.09);
+  cursor: pointer;
+  margin-bottom: 5px;
   
-    @include vendor-prefix(line-clamp, $rows);
-    @include vendor-prefix(box-orient, vertical);
+  &:hover {
+    box-shadow: 0 1px 5px 0 rgba(44, 47, 60, 0.2), 0 3px 10px 0 rgba(44, 47, 60, 0.2);
+
+    & .card__favorite {
+      opacity: 1;
+    }
+
+    & .card__edit-toogle {
+      opacity: 0.5;
+    }
+  }
+
+  &__title {
+    text-align: center;
+
+    @include elipsisTextInRows(2);
+  }
+
+  &__favicon {
+    margin-top: 5px;
+  }
+
+  &__edit-toogle {
+    position: absolute;
+    opacity: 0;
+    top: 5px;
+    right: 5px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: transparent;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
     overflow: hidden;
   }
 
-@mixin vendor-prefix($name, $value) {
-  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
-    #{$vendor}#{$name}: #{$value};
+  &__edit-options {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: $_standardWhite;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 rgba(44, 47, 60, 0.09), 0 3px 10px 0 rgba(44, 47, 60, 0.09);
+    overflow: hidden;
   }
-}
 
-.card {
-    position: relative;
+  &__edit-button {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 300px;
-    height: 150px;
-    border-radius: 6px;
+    border: none;
+    padding: 5px;
+    text-align: left;
     background-color: $_standardWhite;
-    transition: all 0.3s ease-out;
-    box-shadow: 0 0 3px 0 rgba(44, 47, 60, 0.09), 0 3px 10px 0 rgba(44,47,60, 0.09);
     cursor: pointer;
+    transition: all 0.3s ease-out;
 
     &:hover {
-        box-shadow: 0 1px 5px 0 rgba(44, 47, 60, 0.2), 0 3px 10px 0 rgba(44,47,60, 0.2);
+      background-color: $_lighterGray;
     }
+  }
 
-    &__title {
-        text-align: center;
-        @include elipsisTextInRows(2);
+  &__edit-text {
+    line-height: 18px;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+
+  &__favorite {
+    position: absolute;
+    opacity: 0;
+    bottom: 5px;
+    left: 5px;
+
+    &--red {
+      fill: $_red;
     }
-
-    &__favicon {
-        margin-top: 5px;
-    }
-
-    &__edit-toogle {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        padding: 0;
-        width: 20px;
-        height: 20px;
-        border: none;
-        outline: transparent;
-        opacity: 0.2;
-        user-select: none;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-        overflow: hidden;
-    }
-
-    &__edit-options {
-        position: absolute;
-        top: 26px;
-        right: 26px;
-        display: flex;
-        flex-direction: column;
-        width: 150px;
-        background-color: $_standardWhite;
-        border-radius: 6px;
-        box-shadow: 0 0 3px 0 rgba(44, 47, 60, 0.09), 0 3px 10px 0 rgba(44,47,60, 0.09);
-        overflow: hidden;
-    }
-
-    &__edit-button {
-        display: flex;
-        align-items: center;
-        border: none;
-        padding: 5px;
-        text-align: left;
-        background-color: $_standardWhite;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-
-        &:hover {
-            background-color: $_lighterGray;
-        }
-    }
-
-    &__edit-text {
-        line-height: 18px;
-        font-size: 14px;
-        margin-left: 5px;
-    }
-
-    &__favorite {
-        position: absolute;
-        bottom: 5px;
-        left: 5px;
-
-        &--red {
-            fill: red;
-        }
-    }
+  }
 }

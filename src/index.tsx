@@ -8,7 +8,6 @@ import App from './App';
 
 import './index.scss';
 
-
 const render = (): void => {
   ReactDOM.render(
     <Provider store={store}>
