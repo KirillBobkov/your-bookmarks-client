@@ -19,7 +19,7 @@ interface Props {
 
 const Card = ({ card }: Props): JSX.Element => {
   const dispatch = useDispatch();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState('https://via.placeholder.com/300x150/f0f0f0/858585?text=Image+not+found');
   const [editOptionsEnabled, setEditOptions] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>();
   const linkFavicon = `https://icons.duckduckgo.com/ip3/www.${card.link}.ico`;
@@ -70,8 +70,9 @@ const Card = ({ card }: Props): JSX.Element => {
         {' '}
       </a>
       <div className="card" style={{ background: `center / cover no-repeat url('${image}')` }} onClick={handleLinkClick}>
-        <MdSettings className="card__edit-toogle" onClick={handleSetEditOptions} />
-        {editOptionsEnabled 
+        <div className="card__content">
+          <MdSettings className="card__edit-toogle" onClick={handleSetEditOptions} />
+          {editOptionsEnabled 
           && (
             <div className="card__edit-options" onMouseLeave={handleSetEditOptions}>
               <div className="card__edit-button" onClick={handleSetEditMode}>
@@ -84,21 +85,22 @@ const Card = ({ card }: Props): JSX.Element => {
               </div>
             </div>
           )}
-        {card.isFavorite 
-          ? (
-            <MdFavorite
-              size="20"
-              className={`card__favorite ${card.isFavorite ? 'card__favorite--red' : ''}`}
-              onClick={handleAddToFavorite}
-            />
-          )
-          : (
-            <MdFavoriteBorder 
-              size="20"
-              className="card__favorite"
-              onClick={handleAddToFavorite}
-            />
-          )}
+          {card.isFavorite 
+            ? (
+              <MdFavorite
+                size="20"
+                className={`card__favorite ${card.isFavorite ? 'card__favorite--red' : ''}`}
+                onClick={handleAddToFavorite}
+              />
+            )
+            : (
+              <MdFavoriteBorder 
+                size="20"
+                className="card__favorite"
+                onClick={handleAddToFavorite}
+              />
+            )}
+        </div>
       </div>
       <h2 className="card__title"> 
         <img 
