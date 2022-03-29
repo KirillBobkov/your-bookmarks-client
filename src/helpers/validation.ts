@@ -6,7 +6,7 @@ interface Errors {
   link: string;
 }
 
-const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/i;
 const linkRegExp = new RegExp(expression);
 
 const validateField = (data: IPartialCard): Errors => {
@@ -20,7 +20,7 @@ const validateField = (data: IPartialCard): Errors => {
   }
 
   if (!linkRegExp.test(data.link.trim())) {
-    errors.link = 'Check that the link is correct';
+    errors.link = 'Check that the link is correct and starts with "http/https"';
   }
 
   if (!data.link || !data.link.trim()) {
@@ -29,6 +29,5 @@ const validateField = (data: IPartialCard): Errors => {
 
   return errors;
 };
-
     
 export default validateField;

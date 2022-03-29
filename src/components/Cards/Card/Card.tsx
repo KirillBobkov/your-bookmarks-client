@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef, MouseEvent, RefObject, 
+  useState, useRef, MouseEvent, RefObject, useEffect,
 } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -18,14 +18,15 @@ interface Props {
 }
 
 const Card = ({ card }: Props): JSX.Element => {
+  const imagePlaceholder = 'https://via.placeholder.com/300x150/f0f0f0/858585?text=Image+not+found';
+  const linkFavicon = `https://icons.duckduckgo.com/ip3/www.${card.link}.ico`;
+
   const dispatch = useDispatch();
-  const [image, setImage] = useState('https://via.placeholder.com/300x150/f0f0f0/858585?text=Image+not+found');
+  const [image, setImage] = useState(imagePlaceholder);
   const [editOptionsEnabled, setEditOptions] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>();
-  const linkFavicon = `https://icons.duckduckgo.com/ip3/www.${card.link}.ico`;
-  const linkHref = `https://${card.link}`;
 
-  React.useEffect((): void => {
+  useEffect((): void => {
     // axios.get(`http://api.linkpreview.net/?key=118bc20e3e8c646bbdf115ef91deccfe&q=https://${card.link}`)
     //   .then(res => { setImage(res.data.image); });
   }, []);
@@ -62,7 +63,7 @@ const Card = ({ card }: Props): JSX.Element => {
     <li>
       <a
         ref={linkRef as RefObject<HTMLAnchorElement>}
-        href={linkHref}
+        href={card.link}
         rel="noreferrer"
         target="_blank"
         style={{ display: 'none' }}

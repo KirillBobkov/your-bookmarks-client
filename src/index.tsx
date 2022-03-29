@@ -17,7 +17,6 @@ const render = (): void => {
   );
 };
 
-
 const enableHMR = (): void => {
   if (module.hot) {
   // @ts-ignore

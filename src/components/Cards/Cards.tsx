@@ -49,7 +49,7 @@ const Cards = (): JSX.Element => {
           : <div>Sorry, no cards have found.</div>}
         {!searchValue && (
           <li className="cards__add-button" onClick={onAddButton}>
-            <BsPlus color="white" size="50" />
+            <BsPlus color="black" size="50" />
           </li>
         )}
       </ul> 

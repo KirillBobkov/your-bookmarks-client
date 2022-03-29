@@ -5,7 +5,7 @@ export default {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: 'rgba(255, 255, 255, 0.726)',
   },
   content: {
     border: 'none',
@@ -20,7 +20,7 @@ export default {
     bottom: 'auto',
     marginRight: '-40%',
     transform: 'translate(-50%, -50%)',
-    background: 'white',
+    background: '#f0f0f0',
     boxShadow: '0 5px 5px 0 rgba(44, 47, 60, 0.2), 0 3px 10px 0 rgba(44,47,60, 0.2)',
   },
 };
