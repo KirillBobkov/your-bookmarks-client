@@ -11,21 +11,21 @@ interface Props {
   errorMessage?: string;
   label?: string;
   isDisabled?: boolean;
+  placeholder?: string;
 }
 
 const Input = ({
-  name, onChange, value, classes = '', errorMessage = '', label = '', isDisabled = false,
+  name, onChange, value, classes = '', errorMessage = '', 
+  label = '', isDisabled = false, placeholder = 'Start typing',
 }: Props): JSX.Element => {
-  const handleOnchange = (e: any): void => {
-    onChange(e.target.value);
-  };
+  const handleOnchange = (e: any): void => onChange(e.target.value);
 
   return (
     <label className="input__label" htmlFor={name}>
       <span>{label}</span>
       <input
         name={name}
-        placeholder={name}
+        placeholder={placeholder}
         value={value}
         onChange={(e): void => handleOnchange(e)}
         disabled={isDisabled}

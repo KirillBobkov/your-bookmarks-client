@@ -11,7 +11,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({
-  text, mode = '', onClick, type, ...attrs 
+  text, mode = '', onClick, type = 'button', ...attrs 
 }: Props): JSX.Element => (
   <button
     onClick={onClick}
@@ -19,7 +19,7 @@ const Button = ({
       button: true,
       [`button--${mode}`]: !!mode,
     })}
-    type={type ?? 'button'}
+    type={type}
     {...attrs}
   >
     {text}

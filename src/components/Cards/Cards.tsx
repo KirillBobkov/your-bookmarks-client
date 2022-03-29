@@ -15,7 +15,6 @@ import withCards from '../../hocs/withCards';
 
 import './Cards.scss';
 
-
 const Cards = (): JSX.Element => {
   const dispatch = useDispatch();
   const cards = useSelector(getCardsSelector);
@@ -47,7 +46,7 @@ const Cards = (): JSX.Element => {
               ))}
             </>
           )
-          : <div>Sorry, no cards have found</div>}
+          : <div>Sorry, no cards have found.</div>}
         {!searchValue && (
           <li className="cards__add-button" onClick={onAddButton}>
             <BsPlus color="white" size="50" />

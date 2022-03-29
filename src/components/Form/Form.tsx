@@ -81,10 +81,10 @@ const Form = (): JSX.Element => {
 
   return (
     <Modal isOpen={isEditMode} style={editFormStyles as Modal.Styles}>
-      <div className="edit-window">
-        <GrClose className="edit-window__button" onClick={handleCloseForm} />
-        <h2 className="edit-window__title">{currentId ? 'Edit bookmark' : 'Create a bookmark'}</h2>
-        <p className="edit-window__description">
+      <div className="popup-form">
+        <GrClose className="popup-form__close-button" onClick={handleCloseForm} />
+        <h2 className="popup-form__title">{currentId ? 'Edit bookmark' : 'Create a bookmark'}</h2>
+        <p className="popup-form__description">
           {currentId 
             ? 'Change text area that you need and submit changes'
             : 'Fill all text areas to create and add a new bookmark'}
@@ -97,6 +97,7 @@ const Form = (): JSX.Element => {
           <Input
             label="Title"
             name="Title"
+            placeholder="Type title of the card here"
             errorMessage={errors.title}  
             value={cardData.title} 
             onChange={handleOnChangeTitle}
@@ -104,13 +105,14 @@ const Form = (): JSX.Element => {
           <Input
             label="Link"
             name="Link"
+            placeholder="Type or paste link here"
             errorMessage={errors.link}  
             value={cardData.link} 
             onChange={handleOnChangeLink}
           />
-          <div className="edit-window__actions">
-            <Button text="Submit" mode="warning" onClick={(e): void => handleSubmit(e)} />
+          <div className="popup-form__actions">
             <Button text="Clear" mode="danger" onClick={handleClearFields} />
+            <Button text={currentId ? 'Update' : 'Save'} mode="save" onClick={(e): void => handleSubmit(e)} />
           </div>
         </form>
       </div>

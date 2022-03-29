@@ -11,7 +11,7 @@ export default {
     border: 'none',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
-    borderRadius: '4px',
+    borderRadius: '10px',
     outline: 'transparent',
     padding: '30px',
     top: '40%',

@@ -45,6 +45,7 @@ module.exports = {
     'react/no-did-update-set-state': 'off',
     'indent': ['error', 2],
     'react/require-default-props': 'off',
+    'react/button-has-type': 'off',
     semi: 0,
     typedef: [0, 'call-signature'],
 

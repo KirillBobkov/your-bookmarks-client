@@ -8,14 +8,23 @@
   font-weight: 400;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: $_standardWhite;
   text-align: center;
   padding: 10px 30px;
-  margin: 5px;
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   &--warning {
     background-color: $_paleOrange;
+    color: $_standardWhite;
+  }
+
+  &--save {
+    background-color: $_saladGreen;
     color: $_standardWhite;
   }
 
