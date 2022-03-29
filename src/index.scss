@@ -75,6 +75,10 @@ body {
   background-color: $_standardWhite;
 }
 
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
 #root {
   display: flex;
   flex-flow: column nowrap;

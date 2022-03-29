@@ -1,5 +1,5 @@
 
-import React, { ComponentType, useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isFetchingCardsSelector } from '../state/cards/selectors';
@@ -7,7 +7,7 @@ import { getCards } from '../state/cards/actions';
 
 import Loader from '../components/Loader';
 
-const withCards = (WrappedComponent: ComponentType<any>): ComponentType<any> => {
+const withCards = (WrappedComponent: FunctionComponent): FunctionComponent => {
   const withCardsComponent = (): JSX.Element => {
     const dispatch = useDispatch();
     const isFetching = useSelector(isFetchingCardsSelector);

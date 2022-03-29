@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import classnames from 'classnames';
 
 import './Input.scss';
 
 interface Props {
   name: string;
-  onChange: (e: any) => void;
+  onChange: (value: string) => void;
   value: string;
   classes?: string;
   errorMessage?: string;
@@ -18,7 +18,7 @@ const Input = ({
   name, onChange, value, classes = '', errorMessage = '', 
   label = '', isDisabled = false, placeholder = 'Start typing',
 }: Props): JSX.Element => {
-  const handleOnchange = (e: any): void => onChange(e.target.value);
+  const handleOnchange = (e: ChangeEvent<HTMLInputElement>): void => onChange(e.target.value);
 
   return (
     <label className="input__label" htmlFor={name}>

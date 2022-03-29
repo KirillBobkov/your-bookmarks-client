@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef, MouseEvent, RefObject, useEffect,
+  useState, useRef, MouseEvent, RefObject, useEffect, FocusEvent,
 } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -25,10 +25,11 @@ const Card = ({ card }: Props): JSX.Element => {
   const [image, setImage] = useState(imagePlaceholder);
   const [editOptionsEnabled, setEditOptions] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>();
+  const optionsRef = useRef<HTMLDivElement>();
 
   useEffect((): void => {
-    // axios.get(`http://api.linkpreview.net/?key=118bc20e3e8c646bbdf115ef91deccfe&q=https://${card.link}`)
-    //   .then(res => { setImage(res.data.image); });
+    axios.get(`http://api.linkpreview.net/?key=118bc20e3e8c646bbdf115ef91deccfe&q=https://${card.link}`)
+      .then((res): void => { setImage(res.data.image); });
   }, []);
   
   const handleAddToFavorite = (e: MouseEvent): void => {
@@ -47,16 +48,22 @@ const Card = ({ card }: Props): JSX.Element => {
     dispatch(setCurrentId(card._id));
   };
 
-  const handleSetEditOptions = (e: MouseEvent): void => {
+  const handleSetEditOptions = (
+    e: FocusEvent | MouseEvent, optionsState: boolean,
+  ): void => {
     e.stopPropagation();
-    setEditOptions(!editOptionsEnabled); 
+    setEditOptions(optionsState); 
+   
+    if (optionsState) {
+      setTimeout((): void => {
+        optionsRef?.current?.focus();
+      }, 0);
+    }
   };
 
   const handleLinkClick = (e: MouseEvent): void => {
     e.preventDefault();
-    if (linkRef && linkRef.current) {
-      linkRef.current.click(); 
-    }
+    linkRef?.current?.click();
   };
 
   return (
@@ -72,10 +79,17 @@ const Card = ({ card }: Props): JSX.Element => {
       </a>
       <div className="card" style={{ background: `center / cover no-repeat url('${image}')` }} onClick={handleLinkClick}>
         <div className="card__content">
-          <MdSettings className="card__edit-toogle" onClick={handleSetEditOptions} />
+          <MdSettings className="card__edit-toogle" onClick={(e): void => handleSetEditOptions(e, true)} />
           {editOptionsEnabled 
           && (
-            <div className="card__edit-options" onMouseLeave={handleSetEditOptions}>
+            <div 
+              // eslint-disable-next-line
+              tabIndex={2}
+              className="card__edit-options" 
+              ref={optionsRef as RefObject<HTMLDivElement>} 
+              onBlur={(e): void => handleSetEditOptions(e as FocusEvent, false)} 
+              onMouseLeave={(e): void => handleSetEditOptions(e as MouseEvent, false)}
+            >
               <div className="card__edit-button" onClick={handleSetEditMode}>
                 <AiFillEdit />
                 <span className="card__edit-text">Edit</span>

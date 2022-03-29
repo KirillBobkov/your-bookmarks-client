@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, MouseEventHandler } from 'react';
 import classnames from 'classnames';
 
 import './Button.scss';
@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   text: string;
   mode?: string;
   type?: 'button' | 'submit' | 'reset';
-  onClick: (e: any) => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button = ({

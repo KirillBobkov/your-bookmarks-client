@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import { GrClose } from 'react-icons/gr';
@@ -40,7 +40,7 @@ const Form = (): JSX.Element => {
     setValidationErrors(initialErrorsState);
   };
 
-  const handleSubmit = (e: any): void => {
+  const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     const errorsData = validateField(cardData);
 

@@ -58,6 +58,7 @@
     border-radius: 6px;
     box-shadow: 0 0 3px 0 rgba(44, 47, 60, 0.09), 0 3px 10px 0 rgba(44, 47, 60, 0.09);
     overflow: hidden;
+    outline: 1px solid $_transparent;
   }
 
   &__edit-button {
@@ -103,6 +104,7 @@
   .card {
     &__content {
       opacity: 1;
+      background-color: $_translucentWhite;
     }
   }
 }

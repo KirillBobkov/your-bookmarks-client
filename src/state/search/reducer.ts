@@ -10,7 +10,7 @@ const initialState: Reducer = {
 };
 
 const actionHandlers: ActionHandlerType<Reducer> = {
-  [SET_SEARCH_VALUE]: (state: Reducer, value: string): any => ({ 
+  [SET_SEARCH_VALUE]: (state: Reducer, value: string): Reducer => ({ 
     value,
   }),
 };
