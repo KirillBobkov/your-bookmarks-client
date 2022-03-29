@@ -18,19 +18,34 @@ interface Props {
 }
 
 const Card = ({ card }: Props): JSX.Element => {
-  const imagePlaceholder = 'https://via.placeholder.com/300x150/f0f0f0/858585?text=Image+not+found';
-  const linkFavicon = `https://icons.duckduckgo.com/ip3/www.${card.link}.ico`;
+  const imagePlaceholderAPI = 'https://via.placeholder.com/300x150/f0f0f0/858585?text=Image+not+found';
+  const previewImageAPI = 'https://api.linkpreview.net';
+
+  const getlinkFavicon = (link: string): string => {
+    const httpRegExp = /https:\/\/|http:\/\//gm;
+    const clarifiedLink = link.replace(httpRegExp, '');
+    return `https://icons.duckduckgo.com/ip3/www.${clarifiedLink}.ico`;
+  };
 
   const dispatch = useDispatch();
-  const [image, setImage] = useState(imagePlaceholder);
+  const [image, setImage] = useState(imagePlaceholderAPI);
   const [editOptionsEnabled, setEditOptions] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>();
   const optionsRef = useRef<HTMLDivElement>();
+  const linkFavicon = getlinkFavicon(card.link);
 
   useEffect((): void => {
-    axios.get(`http://api.linkpreview.net/?key=118bc20e3e8c646bbdf115ef91deccfe&q=${card.link}`)
-      .then((res): void => { setImage(res.data.image); });
-  }, []);
+    const fetchPreviewImage = async (): Promise<any> => {
+      const res = await axios.post(previewImageAPI, {
+        q: card.link,
+        key: '118bc20e3e8c646bbdf115ef91deccfe',
+      });
+
+      setImage(res.data.image);
+    };
+  
+    fetchPreviewImage();
+  }, [card.link]);
   
   const handleAddToFavorite = (e: MouseEvent): void => {
     e.stopPropagation();
