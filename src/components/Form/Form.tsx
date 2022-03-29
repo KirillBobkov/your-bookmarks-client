@@ -92,7 +92,7 @@ const Form = (): JSX.Element => {
         <form
           autoComplete="off"
           noValidate
-          onSubmit={(e): void => handleSubmit(e)}
+          onSubmit={handleSubmit}
         >
           <Input
             label="Title"
@@ -112,7 +112,7 @@ const Form = (): JSX.Element => {
           />
           <div className="popup-form__actions">
             <Button text="Clear" mode="danger" onClick={handleClearFields} />
-            <Button text={currentId ? 'Update' : 'Save'} mode="save" onClick={(e): void => handleSubmit(e)} />
+            <Button text={currentId ? 'Update' : 'Save'} mode="save" onClick={handleSubmit} />
           </div>
         </form>
       </div>

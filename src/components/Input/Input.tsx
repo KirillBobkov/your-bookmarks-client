@@ -27,7 +27,7 @@ const Input = ({
         name={name}
         placeholder={placeholder}
         value={value}
-        onChange={(e): void => handleOnchange(e)}
+        onChange={handleOnchange}
         disabled={isDisabled}
         className={classnames({
           input: true,

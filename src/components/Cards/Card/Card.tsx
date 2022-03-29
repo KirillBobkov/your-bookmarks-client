@@ -28,7 +28,7 @@ const Card = ({ card }: Props): JSX.Element => {
   const optionsRef = useRef<HTMLDivElement>();
 
   useEffect((): void => {
-    axios.get(`http://api.linkpreview.net/?key=118bc20e3e8c646bbdf115ef91deccfe&q=https://${card.link}`)
+    axios.get(`http://api.linkpreview.net/?key=118bc20e3e8c646bbdf115ef91deccfe&q=${card.link}`)
       .then((res): void => { setImage(res.data.image); });
   }, []);
   
