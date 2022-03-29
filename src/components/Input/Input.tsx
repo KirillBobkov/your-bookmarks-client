@@ -23,18 +23,21 @@ const Input = ({
   return (
     <label className="input__label" htmlFor={name}>
       <span>{label}</span>
-      <input
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleOnchange}
-        disabled={isDisabled}
-        className={classnames({
-          input: true,
-          [`${classes}`]: !!classes,
-          'input--red': !!errorMessage,
-        })}
-      />
+      <div className="input__container">
+        <input
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleOnchange}
+          disabled={isDisabled}
+          className={classnames({
+            input: true,
+            [`${classes}`]: !!classes,
+            'input--red': !!errorMessage,
+          })}
+        />
+        <div className="input__cross-button" onClick={(): void => onChange('')}>✖</div>
+      </div>
       {errorMessage && <p className="input__error">{errorMessage}</p>}
     </label>
   );

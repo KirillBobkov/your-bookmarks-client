@@ -1,11 +1,27 @@
 @import '../../styles/colors';
 
 .input {
+  display: block;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 3px;
   width: 100%;
   border: 1px solid rgba(106, 110, 128, 0.315);
+  
+  &__container {
+    position: relative;
+  }
+
+  &__cross-button {
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    color: black;
+    cursor: pointer;
+  }
 
   &:focus {
     border: 1px solid rgba(47, 49, 59, 0.315);
