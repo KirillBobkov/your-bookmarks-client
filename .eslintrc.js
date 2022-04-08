@@ -42,6 +42,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/interactive-supports-focus': 'off',
+    'jsx-a11y/label-has-for': 'off', 
+    'jsx-a11y/label-has-associated-control': 'off',
     'no-restricted-globals': 'off',
     'react/no-did-update-set-state': 'off',
     'indent': ['error', 2],

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import { AnyAction } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsPlus } from 'react-icons/bs';
@@ -7,7 +8,7 @@ import Card from './Card';
 
 import { setEditModeAction } from '../../state/editMode/actions';
 import { getCardsSelector } from '../../state/cards/selectors';
-import { getSearchValueSelector } from '../../state/search/selectors';
+import { getSearchFilterSelector, getSearchValueSelector } from '../../state/search/selectors';
 
 import { ICard } from '../../interfaces/ICard';
 
@@ -19,31 +20,34 @@ const Cards = (): JSX.Element => {
   const dispatch = useDispatch();
   const cards = useSelector(getCardsSelector);
   const searchValue = useSelector(getSearchValueSelector);
-  const [filteredCards, setFilteredCards] = useState<ICard[]>(cards);
+  const isFavoriteShown = useSelector(getSearchFilterSelector);
+  const [cardsForRender, setCardsForRender] = useState<ICard[]>(cards);
 
   useEffect((): void => {
-    const filteredCardsToState = cards
-      .filter((card: ICard): boolean => card.title
-        .toLowerCase()
-        .includes(searchValue.toLowerCase()));
+    const filterCards = (card: ICard): boolean => {
+      if (isFavoriteShown) {
+        return card.title.toLowerCase()
+          .includes(searchValue.toLowerCase()) && isFavoriteShown === card.isFavorite;
+      } 
 
-    setFilteredCards(filteredCardsToState);
-  }, [cards, searchValue]);
+      return card.title.toLowerCase()
+        .includes(searchValue.toLowerCase());
+    };
+  
+    const filteredCards = _.filter(cards, filterCards);
+    setCardsForRender(filteredCards);
+  }, [cards, searchValue, isFavoriteShown]);
 
   const onAddButton = (): AnyAction => dispatch(setEditModeAction(true));
 
   return (
     <div className="cards">
       <ul className="cards__container">
-        {filteredCards?.length 
+        {cardsForRender?.length 
           ? (
             <>
-              {filteredCards.map((card: ICard): JSX.Element => (
-                <Card 
-                  key={card._id} 
-                  card={card}
-                />
-              ))}
+              {cardsForRender
+                .map((card: ICard): JSX.Element => <Card key={card._id} card={card} />)}
             </>
           )
           : <div>Sorry, no cards have found.</div>}

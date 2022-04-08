@@ -19,7 +19,6 @@ interface Props {
 
 const Card = ({ card }: Props): JSX.Element => {
   const imagePlaceholderAPI = 'https://via.placeholder.com/300x150/f0f0f0/858585?text=Image+not+found';
-  const previewImageAPI = 'https://api.linkpreview.net';
 
   const getlinkFavicon = (link: string): string => {
     const httpRegExp = /https:\/\/|http:\/\//gm;
@@ -28,24 +27,14 @@ const Card = ({ card }: Props): JSX.Element => {
   };
 
   const dispatch = useDispatch();
-  const [image, setImage] = useState(imagePlaceholderAPI);
   const [editOptionsEnabled, setEditOptions] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>();
   const optionsRef = useRef<HTMLDivElement>();
   const linkFavicon = getlinkFavicon(card.link);
 
   useEffect((): void => {
-    const fetchPreviewImage = async (): Promise<any> => {
-      const res = await axios.post(previewImageAPI, {
-        q: card.link,
-        key: '118bc20e3e8c646bbdf115ef91deccfe',
-      });
-
-      setImage(res.data.image);
-    };
-  
-    fetchPreviewImage();
-  }, [card.link]);
+    optionsRef?.current?.focus();
+  }, [editOptionsEnabled]);
   
   const handleAddToFavorite = (e: MouseEvent): void => {
     e.stopPropagation();
@@ -67,13 +56,7 @@ const Card = ({ card }: Props): JSX.Element => {
     e: FocusEvent | MouseEvent, optionsState: boolean,
   ): void => {
     e.stopPropagation();
-    setEditOptions(optionsState); 
-   
-    if (optionsState) {
-      setTimeout((): void => {
-        optionsRef?.current?.focus();
-      }, 0);
-    }
+    setEditOptions(optionsState);
   };
 
   const handleLinkClick = (e: MouseEvent): void => {
@@ -82,17 +65,17 @@ const Card = ({ card }: Props): JSX.Element => {
   };
 
   return (
-    <li>
+    <li className="card">
       <a
         ref={linkRef as RefObject<HTMLAnchorElement>}
         href={card.link}
         rel="noreferrer"
         target="_blank"
-        style={{ display: 'none' }}
+        style={{ visibility: 'hidden' }}
       >
         {' '}
       </a>
-      <div className="card" style={{ background: `center / cover no-repeat url('${image}')` }} onClick={handleLinkClick}>
+      <div className="card__content-wrapper" style={{ background: `center / cover no-repeat url('${card.previewSrc || imagePlaceholderAPI}')` }} onClick={handleLinkClick}>
         <div className="card__content">
           <MdSettings className="card__edit-toogle" onClick={(e): void => handleSetEditOptions(e, true)} />
           {editOptionsEnabled 

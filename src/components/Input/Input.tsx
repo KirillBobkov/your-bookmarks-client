@@ -21,19 +21,20 @@ const Input = ({
   const handleOnchange = (e: ChangeEvent<HTMLInputElement>): void => onChange(e.target.value);
 
   return (
-    <label className="input__label" htmlFor={name}>
-      <span>{label}</span>
+    <label className="input" htmlFor={name}>
+      {label && <span>{label}</span>}
       <div className="input__container">
         <input
           name={name}
+          autoComplete="off"
           placeholder={placeholder}
           value={value}
           onChange={handleOnchange}
           disabled={isDisabled}
           className={classnames({
-            input: true,
+            input__element: true,
             [`${classes}`]: !!classes,
-            'input--red': !!errorMessage,
+            'input__element--red': !!errorMessage,
           })}
         />
         <div className="input__cross-button" onClick={(): void => onChange('')}>✖</div>

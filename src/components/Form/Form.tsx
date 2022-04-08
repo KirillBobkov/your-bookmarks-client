@@ -26,8 +26,8 @@ const Form = (): JSX.Element => {
   const currentId = useSelector(getCurrentIdSelector);
   const currentCard = useSelector(getCurrentIdCardSelector);
 
-  const initialErrorsState: IPartialCard = { title: '', link: '' };
-  const initialCardState: IPartialCard = { title: '', link: '' };
+  const initialErrorsState: IPartialCard = { previewSrc: '', title: '', link: '' };
+  const initialCardState: IPartialCard = { previewSrc: '', title: '', link: '' };
   const [errors, setValidationErrors] = useState(initialErrorsState);
   const [cardData, setCardData] = useState<IPartialCard>(initialCardState);
 
@@ -73,6 +73,14 @@ const Form = (): JSX.Element => {
     });
   };
 
+  const handleOnChangePreviewSrc = (value: string): void => {
+    setValidationErrors({ ...errors, previewSrc: '' });
+    setCardData({
+      ...cardData,
+      previewSrc: value,
+    });
+  };
+
   const handleCloseForm = (): void => {
     dispatch(setEditModeAction(false)); 
     dispatch(setCurrentId(''));
@@ -109,6 +117,14 @@ const Form = (): JSX.Element => {
             errorMessage={errors.link}  
             value={cardData.link} 
             onChange={handleOnChangeLink}
+          />
+          <Input
+            label="Preview source image"
+            name="Preview source image"
+            placeholder="Type or paste preview source here"
+            errorMessage={errors.previewSrc}  
+            value={cardData.previewSrc} 
+            onChange={handleOnChangePreviewSrc}
           />
           <div className="popup-form__actions">
             <Button text="Clear" mode="danger" onClick={handleClearFields} />
