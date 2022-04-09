@@ -3,7 +3,6 @@ import {
   Store, Reducer, CombinedState, StateFromReducersMapObject,
 } from 'redux';
 import thunk from 'redux-thunk';
-import { reducer as form } from 'redux-form';
 import { routerMiddleware, connectRouter } from 'connected-react-router';
 import { History } from 'history';
   
@@ -16,7 +15,6 @@ export function createReducer(
     
   return combineReducers({
     ...reducers,
-    form,
     router: connectRouter(history),
   });
 }

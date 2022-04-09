@@ -13,6 +13,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true, // Allows for the parsing of JSX
     },
+    project: ["./tsconfig.json"]
   },
   rules: {
     '@typescript-eslint/ban-types': 0,
@@ -22,7 +23,9 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-unused-vars': 0,
+    '@typescript-eslint/space-before-blocks': 0,
     '@typescript-eslint/indent': 0,
+    '@typescript-eslint/default-param-last': 0,
     'import/no-dynamic-require': 0,
     'import/no-named-as-default': 0,
     'import/no-named-as-default-member': 0,
@@ -37,7 +40,7 @@ module.exports = {
     "linebreak-style": 0,
     'no-console': 0,
     'no-trailing-spaces': 0,
-    'react/jsx-indent': 1,
+    'react/jsx-indent': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
@@ -49,6 +52,8 @@ module.exports = {
     'indent': ['error', 2],
     'react/require-default-props': 'off',
     'react/button-has-type': 'off',
+    'import/extensions': 'off', 
+    'import/no-extraneous-dependencies': 'off', 
     semi: 0,
     typedef: [0, 'call-signature'],
 
