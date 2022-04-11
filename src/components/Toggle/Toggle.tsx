@@ -6,9 +6,10 @@ interface Props {
   checked: boolean;
   onToggle: (flag: boolean) => void;
   classes?: string;
+  label: string;
 }
 
-const Toggle = ({ checked, onToggle, classes }: Props): JSX.Element => (
+const Toggle = ({ checked, onToggle, classes, label }: Props): JSX.Element => (
   <div className={`toggle__container ${classes}`}>
     <input 
       checked={checked} 
@@ -19,7 +20,7 @@ const Toggle = ({ checked, onToggle, classes }: Props): JSX.Element => (
       className="toggle__button"
     />
     {/* eslint-disable-next-line */}
-    <label htmlFor="toggle__button" className="toggle__label">Show favorite</label>
+    <label htmlFor="toggle__button" className="toggle__label">{label}</label>
   </div>
 );
 

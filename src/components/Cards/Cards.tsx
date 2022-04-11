@@ -25,13 +25,11 @@ const Cards = (): JSX.Element => {
 
   useEffect((): void => {
     const filterCards = (card: ICard): boolean => {
-      if (isFavoriteShown) {
-        return card.title.toLowerCase()
-          .includes(searchValue.toLowerCase()) && isFavoriteShown === card.isFavorite;
-      } 
+      const isMatchingByTitle = card.title.toLowerCase().includes(searchValue.toLowerCase());
 
-      return card.title.toLowerCase()
-        .includes(searchValue.toLowerCase());
+      return isFavoriteShown 
+        ? isMatchingByTitle && isFavoriteShown === card.isFavorite
+        : isMatchingByTitle;
     };
   
     const filteredCards = _.filter(cards, filterCards);
@@ -50,7 +48,7 @@ const Cards = (): JSX.Element => {
                 .map((card: ICard): JSX.Element => <Card key={card._id} card={card} />)}
             </>
           )
-          : <div>Sorry, no cards have found.</div>}
+          : <div>Sorry, no cards have found</div>}
         {!searchValue && (
           <li className="cards__add-button" onClick={onAddButton}>
             <BsPlus color="black" size="50" />

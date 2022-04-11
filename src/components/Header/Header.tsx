@@ -18,7 +18,22 @@ const Header = (): JSX.Element => {
   const isCardsAvailable = useSelector(isCardsEmptySelector);
   const isFavoriteShown = useSelector(getSearchFilterSelector);
   const [searchTerm, setSearchTerm] = useState(searchValue);
+  const [theme, setTheme] = useState('light');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  useEffect((): void => {
+    const body = document.getElementsByTagName('body')[0];
+
+    if (theme === 'dark') {
+      body.classList.remove('light');
+      body.classList.add('dark');
+    }
+
+    if (theme === 'light') {
+      body.classList.remove('dark');
+      body.classList.add('light');
+    }
+  }, [theme]);
 
   useEffect((): void => {
     dispatch(setSearchValue(debouncedSearchTerm));
@@ -28,9 +43,14 @@ const Header = (): JSX.Element => {
     dispatch(setSearchFilter(flag));
   }, [dispatch]);
 
+  const handleToggleTheme = useCallback((flag: boolean): void => {
+    setTheme(flag ? 'dark' : 'light' );
+  }, [dispatch]);
+
   return (
     <header className="header">
-      <Toggle classes="header__toggle" checked={isFavoriteShown} onToggle={handleToggleFilter} />
+      <Toggle label={'Favorite'} classes="header__toggle" checked={isFavoriteShown} onToggle={handleToggleFilter} />
+      <Toggle label={'Dark mode'} classes="header__toggle" checked={theme !== 'light'} onToggle={handleToggleTheme} />
       <Input 
         name="Find bookmark" 
         classes="header__input"

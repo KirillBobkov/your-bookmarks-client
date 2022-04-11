@@ -6,7 +6,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.72);
+  background-color: var(--fadeColor);
+  color: var(--textColor);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,10 +20,11 @@
   border: none;
   overflow: auto;
   border-radius: 10px;
+  border: 2px solid  var(--entityColor);
   outline: transparent;
   padding: 30px;
   margin: -40px 25px 25px;
-  background: #f0f0f0;
+  background-color: var(--background);
   box-shadow: 0 5px 5px 0 rgba(44, 47, 60, 0.2), 0 3px 10px 0 rgba(44,47,60, 0.2);
 
   &__close-button {
@@ -32,7 +34,7 @@
     right: 20px;
     border: none;
     outline: transparent;
-    background-color: $_gray;
+    color: var(--textColor);
     user-select: none;
     cursor: pointer;
   }
@@ -42,6 +44,7 @@
     font-size: 24px;
     line-height: 30px;
     margin-bottom: 10px;
+    color: var(--textColor);
   }
 
   &__description {
@@ -50,6 +53,7 @@
     line-height: 16px;
     color: $_black;
     margin-bottom: 20px;
+    color: var(--textColor);
   }
 
   &__actions {

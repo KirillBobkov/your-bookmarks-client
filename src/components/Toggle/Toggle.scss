@@ -7,14 +7,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
   }
 
   &__label {
     cursor: pointer;
     margin-left: 10px;
-    color: #000;
-    font-size: 12px;
+    color: var(--textColor);
+    font-size: 14px;
   }
 
   &__button {
@@ -24,7 +23,7 @@
     height: 22px;
     margin: 0;
     vertical-align: top;
-    background: $_red;
+    background: $_darkSilver;
     border-radius: 30px;
     outline: none;
     cursor: pointer;

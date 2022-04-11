@@ -27,7 +27,8 @@
 
   &__title {
     text-align: center;
-
+    color: var(--textColor);
+  
     @include elipsisTextInRows(2);
   }
 
@@ -57,7 +58,8 @@
     display: flex;
     flex-direction: column;
     width: 150px;
-    background-color: $_standardWhite;
+    background-color: var(--background);
+    color: var(--textColor);
     border-radius: 6px;
     box-shadow: 0 0 3px 0 rgba(44, 47, 60, 0.09), 0 3px 10px 0 rgba(44, 47, 60, 0.09);
     overflow: hidden;
@@ -70,12 +72,11 @@
     border: none;
     padding: 5px;
     text-align: left;
-    background-color: $_standardWhite;
     cursor: pointer;
     transition: all 0.3s ease-out;
 
     &:hover {
-      background-color: $_lighterGray;
+      background-color: var(--entityColor);
     }
   }
 
@@ -98,7 +99,6 @@
   &:hover {
     & .card__content {
       opacity: 1;
-      background-color: $_translucentWhite;
     }
   }
 }
@@ -107,7 +107,6 @@
   .card {
     &__content {
       opacity: 1;
-      background-color: $_translucentWhite;
     }
   }
 }

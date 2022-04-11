@@ -1,0 +1,25 @@
+@import '../styles/colors.scss';
+
+$themes: (
+    light: (
+      'textColor': $_black,
+      'background': $_standardWhite,
+      'entityColor': $_gray,
+      'fadeColor': $_translucentWhite
+    ),
+    dark: (
+      'textColor': $_standardWhite,
+      'background': $_black,
+      'entityColor': $_mediumGray,
+      'fadeColor': $_translucentBlack
+    )
+  );
+  
+  @each $theme-name, $theme-config in $themes {
+      body.#{$theme-name} {
+        // define a css variable for each property
+        @each $name, $property in $theme-config {
+          --#{$name}: #{$property};
+        }
+      }
+  }

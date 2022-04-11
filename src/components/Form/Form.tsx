@@ -41,7 +41,9 @@ const Form = (): JSX.Element => {
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
-    const errorsData = validateField(cardData);
+    const errorsData = validateField(
+      { previewSrc: cardData.previewSrc, title: cardData.title, link: cardData.link },
+    );
 
     if (!_.isEqual(errorsData, initialErrorsState)) {
       setValidationErrors(errorsData);
