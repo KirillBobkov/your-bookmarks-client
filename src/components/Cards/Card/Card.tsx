@@ -67,14 +67,18 @@ const Card = ({ card }: Props): JSX.Element => {
   return (
     <li className="card">
       <a
+        ref={linkRef as RefObject<HTMLAnchorElement>}
         href={card.link}
         rel="noreferrer"
         target="_blank"
+        style={{ visibility: 'hidden' }}
       >
-        <div className="card__content-wrapper" style={{ background: `center / cover no-repeat url('${card.previewSrc || imagePlaceholderAPI}')` }}>
-          <div className="card__content">
-            <MdSettings className="card__edit-toogle" onClick={(e): void => handleSetEditOptions(e, true)} />
-            {editOptionsEnabled 
+        {' '}
+      </a>
+      <div className="card__content-wrapper" style={{ background: `center / cover no-repeat url('${card.previewSrc || imagePlaceholderAPI}')` }} onClick={handleLinkClick}>
+        <div className="card__content">
+          <MdSettings className="card__edit-toogle" onClick={(e): void => handleSetEditOptions(e, true)} />
+          {editOptionsEnabled 
           && (
             <div 
               // eslint-disable-next-line
@@ -94,35 +98,34 @@ const Card = ({ card }: Props): JSX.Element => {
               </div>
             </div>
           )}
-            {card.isFavorite 
-              ? (
-                <MdFavorite
-                  size="20"
-                  className={`card__favorite ${card.isFavorite ? 'card__favorite--red' : ''}`}
-                  onClick={handleAddToFavorite}
-                />
-              )
-              : (
-                <MdFavoriteBorder 
-                  size="20"
-                  className="card__favorite"
-                  onClick={handleAddToFavorite}
-                />
-              )}
-          </div>
+          {card.isFavorite 
+            ? (
+              <MdFavorite
+                size="20"
+                className={`card__favorite ${card.isFavorite ? 'card__favorite--red' : ''}`}
+                onClick={handleAddToFavorite}
+              />
+            )
+            : (
+              <MdFavoriteBorder 
+                size="20"
+                className="card__favorite"
+                onClick={handleAddToFavorite}
+              />
+            )}
         </div>
-        <h2 className="card__title"> 
-          <img 
-            className="card__favicon" 
-            width="16" 
-            height="16" 
-            src={linkFavicon} 
-            alt={`${card.title} link icon`}
-          /> 
-          {' '}
-          {card.title}
-        </h2>
-      </a>
+      </div>
+      <h2 className="card__title"> 
+        <img 
+          className="card__favicon" 
+          width="16" 
+          height="16" 
+          src={linkFavicon} 
+          alt={`${card.title} link icon`}
+        /> 
+        {' '}
+        {card.title}
+      </h2>
     </li>
   );
 };
