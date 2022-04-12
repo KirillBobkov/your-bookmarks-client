@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/space-before-blocks': 0,
     '@typescript-eslint/indent': 0,
     '@typescript-eslint/default-param-last': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
     'import/no-dynamic-require': 0,
     'import/no-named-as-default': 0,
     'import/no-named-as-default-member': 0,

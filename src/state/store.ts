@@ -2,26 +2,28 @@ import {
   createStore, applyMiddleware, combineReducers, compose,
   Store, Reducer, CombinedState, StateFromReducersMapObject,
 } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './rootSaga';
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  
-export function createReducer(
+function createReducer(
 ): Reducer<CombinedState<StateFromReducersMapObject<any>>, never> {
   const reducers = require('./reducers').default;
-    
+      
   return combineReducers({ ...reducers });
 }
   
-export default function configureStore(initialState: object = {}): Store {
-  const middlewares = [
-    thunk,
-  ];
+function configureStore(initialState: object = {}): Store {
+  const sagaMiddleware = createSagaMiddleware();
+  const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const middlewares = [sagaMiddleware];
+
   const store = createStore(
     createReducer(),
     initialState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
+
+  sagaMiddleware.run(rootSaga);
   
   if (module.hot) {
     module.hot.accept('./reducers', (): void => {
@@ -31,3 +33,5 @@ export default function configureStore(initialState: object = {}): Store {
   
   return store;
 }
+
+export default configureStore({});

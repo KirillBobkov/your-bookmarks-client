@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isFetchingCardsSelector } from '../state/cards/selectors';
-import { getCards } from '../state/cards/actions';
+import { fetchCards } from '../state/cards/actions';
 
 import Loader from '../components/Loader';
 
@@ -12,7 +12,7 @@ const withCards = (WrappedComponent: FunctionComponent): FunctionComponent => {
     const dispatch = useDispatch();
     const isFetching = useSelector(isFetchingCardsSelector);
       
-    useEffect((): void => { dispatch(getCards()); }, []);
+    useEffect((): void => { dispatch(fetchCards()); }, []);
       
     return isFetching ? <Loader /> : <WrappedComponent />;
   };
